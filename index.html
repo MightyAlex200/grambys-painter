@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Colored Gramby Object Generator</title>
+    <style>
+      * {
+        font-family: sans-serif;
+        box-sizing: border-box;
+      }
+      
+      body {
+        text-align: center;
+      }
+      
+      #all {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 8px #d48ce2 solid;
+        border-radius: 32px;
+        display: inline-block;
+        background: #ecb2f7;
+        padding: 16px;
+        padding-bottom: 48px;
+      }
+      
+      code {
+        padding: 8px;
+        border: 2px solid #aaaaaa;
+        border-radius: 12px;
+        background: #dddddd;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("form");
+        const obj = document.getElementById("obj");
+        const col = document.getElementById("col");
+        const out = document.getElementById("output");
+        form.addEventListener("submit", function(e) {
+          const objectType = obj.value;
+          const colormatch = /#(..)(..)(..)/gi.exec(col.value);
+          const RGB = [
+            parseInt(colormatch[1], 16),
+            parseInt(colormatch[2], 16),
+            parseInt(colormatch[3], 16),
+          ];
+          const grambyObject = [[objectType, [], {RGB}]];
+          const res = JSON.stringify(grambyObject)
+          out.innerText = btoa(res);
+          e.preventDefault();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="all">
+      <form id="form">
+        <h1>Colored Gramby Object Generator</h1>
+        <label for="obj">Object:</label>
+        <select id="obj">
+          <option value="AltitudeSensor">Altitude Sensor</option>
+          <option value="Anchor">Anchor</option>
+          <option value="Arm">Arm</option>
+          <option value="BallSocket">Ball Socket</option>
+          <option value="Balloon">Balloon</option>
+          <option value="Base">Base</option>
+          <option value="Bearing">Bearing</option>
+          <option value="BouncyBall">Bouncy Ball</option>
+          <option value="BowlingBall">Bowling Ball</option>
+          <option value="BrakeLight">Brake Light</option>
+          <option value="Bumper">Bumper</option>
+          <option value="Button">Button</option>
+          <option value="Camera">Camera</option>
+          <option value="Canister">Canister</option>
+          <option value="Connector">Connector</option>
+          <option value="ConnectorBall">Connector Ball</option>
+          <option value="Delayer">Delayer</option>
+          <option value="Detacher">Detacher</option>
+          <option value="DoorA">DoorA</option>
+          <option value="DoorB">DoorB</option>
+          <option value="DoorC">DoorC</option>
+          <option value="DoorD">DoorD</option>
+          <option value="EntitySensor">Entity Sensor</option>
+          <option value="FishBowl">Fish Bowl</option>
+          <option value="FuelTank">Fuel Tank</option>
+          <option value="GasCap">Gas Cap</option>
+          <option value="Gate-AND">AND Gate</option>
+          <option value="Gate-NOT">NOT Gate</option>
+          <option value="Gate-OR">OR Gate</option>
+          <option value="GoldPotatoEngine">Gold Potato Engine</option>
+          <option value="Gyro">Gyro</option>
+          <option value="HalfConnectorBall">Half Connector Ball</option>
+          <option value="Hood">Hood</option>
+          <option value="InputSensor">Input Sensor</option>
+          <option value="Joint">Joint</option>
+          <option value="Leg">Leg</option>
+          <option value="LongStick">Long Stick</option>
+          <option value="Looper">Looper</option>
+          <option value="MatchingGyro">Matching Gyro</option>
+          <option value="Part">Part</option>
+          <option value="Pipes">Pipes</option>
+          <option value="Piston">Piston</option>
+          <option value="Poop">Poop</option>
+          <option value="PressurePlate">Pressure Plate</option>
+          <option value="Propeller">Propeller</option>
+          <option value="RPG">RPG</option>
+          <option value="Recorder">Recorder</option>
+          <option value="Rocket">Rocket</option>
+          <option value="Roof">Roof</option>
+          <option value="Rope">Rope</option>
+          <option value="RubberBand">Rubber Band</option>
+          <option value="Servo">Servo</option>
+          <option value="Servo_Physics">Servo (Physics)</option>
+          <option value="ShortStick">Short Stick</option>
+          <option value="Sledge">Sledge</option>
+          <option value="Splitter_1">Splitter (1)</option>
+          <option value="SprayPaint">Spray Paint</option>
+          <option value="StaringGyro">Staring Gyro</option>
+          <option value="SteeringGyro">Steering Gyro</option>
+          <option value="SteeringWheel">Steering Wheel</option>
+          <option value="Stick">Stick</option>
+          <option value="Switch">Switch</option>
+          <option value="Thruster">Thruster</option>
+          <option value="TripWire">Trip Wire</option>
+          <option value="Trunk">Trunk</option>
+          <option value="VelocitySensor">Velocity Sensor</option>
+          <option value="Wheel">Wheel</option>
+          <option value="Wire">Wire</option>
+        </select>
+        <br>
+        <label for="col">Color: </label><input id="col" type="color">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <code id="output">Press submit to generate code</code>
+    </div>
+  </body>
+</html>
